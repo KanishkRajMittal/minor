@@ -14,7 +14,7 @@ def execute_script(gmail):
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
-@app.route('/update>', methods=['POST','GET'])
+@app.route('/update', methods=['POST','GET'])
 def execute_script():
     try:
         # Run your Python script using subprocess
