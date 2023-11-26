@@ -66,7 +66,6 @@ def leetcode(handle):
     return d
 
 def codeforces(handle):
-    anonim_cf_api = codeforces_api.CodeforcesApi ()
     d={}
     d["Handle"]=handle
     url='https://codeforces.com/api/user.info?handles='+handle
