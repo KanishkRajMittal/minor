@@ -1,9 +1,13 @@
-# import firebase_admin
-# from firebase_admin import credentials
-# from firebase_admin import firestore
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 from bs4 import BeautifulSoup
 import requests
+import codeforces_api
 
+cred = credentials.Certificate("/home/kanishk/Desktop/Python/firebase/credentials.json")
+firebase_admin.initialize_app(cred)
+db=firestore.client()
 
 def leetcode(handle):
     d={}
@@ -63,6 +67,7 @@ def leetcode(handle):
     return d
 
 def codeforces(handle):
+    anonim_cf_api = codeforces_api.CodeforcesApi ()
     d={}
     d["Handle"]=handle
     url='https://codeforces.com/api/user.info?handles='+handle
@@ -109,7 +114,16 @@ def gfg(handle):
     d["Monthly_Coding_Score"]=monthly_coding_score
     return d
 
+gmail="kanishkrajmittal@gmail.com"
+l_handle="KanishkMittal"
+c_handle="KanishkMittal"
+gfg_handle="kanishkra56bh"
 
+# gmail="harshsharma@gmail.com"
+# l_handle="XoXoHarsh"
+# c_handle="XOXOHarsh"
+# gfg_handle="harshsharma20503"
+dic={"codeforces":codeforces(c_handle),"leetcode":leetcode(l_handle),"gfg":gfg(gfg_handle)}
 
 # prof=db.collection("users").document(gmail).get().to_dict()
 # dic={}
@@ -126,24 +140,5 @@ def gfg(handle):
 
 
 #leetcode
-
-
-
-
-# cred = credentials.Certificate("credentials.json")
-# firebase_admin.initialize_app(cred)
-# db=firestore.client()
-
-gmail="kanishkrajmittal@gmail.com"
-l_handle="KanishkMittal"
-c_handle="KanishkMittal"
-gfg_handle="kanishkra56bh"
-
-# gmail="harshsharma@gmail.com"
-# l_handle="XoXoHarsh"
-# c_handle="XOXOHarsh"
-# gfg_handle="harshsharma20503"
-dic={"codeforces":codeforces(c_handle),"leetcode":leetcode(l_handle),"gfg":gfg(gfg_handle)}
-# db.collection("users").document(gmail).set(dic)
-
+db.collection("users").document(gmail).set(dic)
 
