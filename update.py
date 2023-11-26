@@ -209,7 +209,7 @@ def user_update():
 
 
 
-cred = credentials.Certificate("/home/kanishk/Desktop/Python/firebase/credentials.json")
+cred = credentials.Certificate("credentials.json")
 firebase_admin.initialize_app(cred)
 db=firestore.client() 
 user_update()
