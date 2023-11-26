@@ -3,7 +3,6 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 from bs4 import BeautifulSoup
 import requests
-import codeforces_api
 
 cred = credentials.Certificate("credentials.json")
 firebase_admin.initialize_app(cred)
