@@ -1,6 +1,6 @@
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
+# import firebase_admin
+# from firebase_admin import credentials
+# from firebase_admin import firestore
 from bs4 import BeautifulSoup
 import requests
 
@@ -132,9 +132,9 @@ def gfg(handle):
 app = Flask(__name__)
 @app.route('/')
 def index():
-    cred = credentials.Certificate("credentials.json")
-    firebase_admin.initialize_app(cred)
-    db=firestore.client()
+    # cred = credentials.Certificate("credentials.json")
+    # firebase_admin.initialize_app(cred)
+    # db=firestore.client()
 
     gmail="kanishkrajmittal@gmail.com"
     l_handle="KanishkMittal"
@@ -146,8 +146,8 @@ def index():
     # c_handle="XOXOHarsh"
     # gfg_handle="harshsharma20503"
     dic={"codeforces":codeforces(c_handle),"leetcode":leetcode(l_handle),"gfg":gfg(gfg_handle)}
-    db.collection("users").document(gmail).set(dic)
-    return "Hello Worlds"
+    # db.collection("users").document(gmail).set(dic)
+    return dic
 
 
 if __name__ == '__main__':
