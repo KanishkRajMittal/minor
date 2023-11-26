@@ -3,8 +3,9 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 from bs4 import BeautifulSoup
 import requests
+import sys
 
-cred = credentials.Certificate("credentials.json")
+cred = credentials.Certificate("/home/kanishk/Desktop/Python/firebase/credentials.json")
 firebase_admin.initialize_app(cred)
 db=firestore.client()
 
@@ -112,29 +113,30 @@ def gfg(handle):
     d["Monthly_Coding_Score"]=monthly_coding_score
     return d
 
-gmail="kanishkrajmittal@gmail.com"
-l_handle="KanishkMittal"
-c_handle="KanishkMittal"
-gfg_handle="kanishkra56bh"
+# gmail="kanishkrajmittal@gmail.com"
+# l_handle="KanishkMittal"
+# c_handle="KanishkMittal"
+# gfg_handle="kanishkra56bh"
 
 # gmail="harshsharma@gmail.com"
 # l_handle="XoXoHarsh"
 # c_handle="XOXOHarsh"
 # gfg_handle="harshsharma20503"
-dic={"codeforces":codeforces(c_handle),"leetcode":leetcode(l_handle),"gfg":gfg(gfg_handle)}
+# dic={"codeforces":codeforces(c_handle),"leetcode":leetcode(l_handle),"gfg":gfg(gfg_handle)}
 
-# prof=db.collection("users").document(gmail).get().to_dict()
-# dic={}
-# if "leetcode" in prof:
-#     l_handle=prof['leetcode']["Handle"]
-#     dic["leetcode"]=leetcode(l_handle)
-# if "codeforces" in prof:
-#     c_handle=prof['codeforces']["Handle"]
-#     dic["codeforces"]=codeforces(c_handle)
-# if "gfg" in prof:
-#     print("rgswa")
-#     gfg_handle=prof['gfg']["Handle"]
-#     dic["gfg"]=gfg(gfg_handle)
+gmail = sys.argv[1]
+prof=db.collection("users").document(gmail).get().to_dict()
+dic={}
+if "leetcode" in prof:
+    l_handle=prof['leetcode']["Handle"]
+    dic["leetcode"]=leetcode(l_handle)
+if "codeforces" in prof:
+    c_handle=prof['codeforces']["Handle"]
+    dic["codeforces"]=codeforces(c_handle)
+if "gfg" in prof:
+    print("rgswa")
+    gfg_handle=prof['gfg']["Handle"]
+    dic["gfg"]=gfg(gfg_handle)
 
 
 #leetcode
