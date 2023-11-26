@@ -5,7 +5,7 @@ import subprocess
 app = Flask(__name__)
 
 @app.route('/profile/<gmail>', methods=['POST','GET'])
-def execute_script(gmail):
+def profile_maker(gmail):
     try:
         # Run your Python script using subprocess
         result = subprocess.run(['python3', 'prof_maker.py',gmail], capture_output=True, text=True)
@@ -15,7 +15,7 @@ def execute_script(gmail):
         return jsonify({'success': False, 'error': str(e)})
 
 @app.route('/update', methods=['POST','GET'])
-def execute_script():
+def update_all():
     try:
         # Run your Python script using subprocess
         result = subprocess.run(['python3', 'update.py'], capture_output=True, text=True)
