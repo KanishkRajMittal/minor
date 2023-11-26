@@ -4,11 +4,11 @@ import subprocess
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST','GET'])
-def execute_script():
+@app.route('/profile/<gmail>', methods=['POST','GET'])
+def execute_script(gmail):
     try:
         # Run your Python script using subprocess
-        result = subprocess.run(['python3', 'prof_maker.py'], capture_output=True, text=True)
+        result = subprocess.run(['python3', '/home/kanishk/Desktop/upload/prof_maker.py',gmail], capture_output=True, text=True)
         output = result.stdout
         return jsonify({'success': True, 'output': output})
     except Exception as e:
