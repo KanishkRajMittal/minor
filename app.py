@@ -147,7 +147,7 @@ def index():
     # gfg_handle="harshsharma20503"
     dic={"codeforces":codeforces(c_handle),"leetcode":leetcode(l_handle),"gfg":gfg(gfg_handle)}
     # db.collection("users").document(gmail).set(dic)
-    return dic
+    return dic.json
 
 
 if __name__ == '__main__':
