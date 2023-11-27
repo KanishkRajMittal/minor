@@ -9,6 +9,11 @@ cred = credentials.Certificate("credentials.json")
 firebase_admin.initialize_app(cred)
 db=firestore.client()
 
+def keep_numeric_digits(input_string):
+    return ''.join(char for char in input_string if char.isdigit())
+
+
+
 def leetcode(handle):
     d={}
     d["Handle"]=handle
@@ -85,10 +90,19 @@ def codeforces(handle):
 
     d["Number_Of_Contributions"]=contributions
     d["Current_Rating"]=rating
-    d["Number_Of_Friends"]:No_of_friends
+    d["Number_Of_Friends"]=No_of_friends
     d["Current_Rank"]=Rank
     d["Max_Rating"]=max_rating
     d["Max_Rank"]=max_rank
+
+    url="https://codeforces.com/profile/"+handle
+    response=requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    problem_solved=soup.find_all(class_='_UserActivityFrame_counterValue')
+    No_of_ques_solve=problem_solved[0].text
+    max_streak=problem_solved[3].text
+    d["Number_Of_Ques_solved"] = keep_numeric_digits(No_of_ques_solve)
+    d["Max_Streak"]=max_streak
     return d
 
 
@@ -103,6 +117,18 @@ def gfg(handle):
     Coding_score=score_card[0].text
     problem_solved=score_card[1].text
     monthly_coding_score=score_card[2].text
+
+    # Find the tabs containing the number of questions for each difficulty
+    tabs = soup.find_all('li', class_='tab')
+    # Create a dictionary to store the count for each difficulty
+    difficulty_count = {'easy': 0, 'medium': 0, 'hard': 0}
+    for tab in tabs:
+        # Extract the difficulty level and count from the 'href' attribute
+        difficulty = tab.find('a')['href'].replace('#', '')
+        count = int(tab.find('a').text.split('(')[1].split(')')[0])
+        # Update the dictionary with the count for the corresponding difficulty
+        difficulty_count[difficulty] = count
+    
     d={}
     d["Handle"]=handle
     # d["Rank"]=rank
@@ -111,6 +137,9 @@ def gfg(handle):
     d["Coding_Score"]=Coding_score
     d["Problem_Solved"]=problem_solved
     d["Monthly_Coding_Score"]=monthly_coding_score
+    d["Easy_Ques_Solved"]=difficulty_count["easy"]
+    d["Medium_Ques_Solved"]= difficulty_count['medium']
+    d["Hard_Ques_Solved"] = difficulty_count['hard']
     return d
 
 # gmail="kanishkrajmittal@gmail.com"
