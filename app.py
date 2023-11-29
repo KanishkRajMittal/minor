@@ -18,7 +18,7 @@ def profile_maker(gmail):
 def update_all():
     try:
         # Run your Python script using subprocess
-        result = subprocess.run(['python3', 'update.py'], capture_output=True, text=True)
+        result = subprocess.run(['python3', 'prac_update.py'], capture_output=True, text=True)
         output = result.stdout
         return jsonify({'success': True, 'output': output})
     except Exception as e:
