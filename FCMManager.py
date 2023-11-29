@@ -1,7 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials, messaging
 
-cred = credentials.Certificate("/home/kanishk/Desktop/Python/firebase/credentials.json")
+cred = credentials.Certificate("credentials.json")
 firebase_admin.initialize_app(cred)
 
 def sendPush(title, msg, registration_token, dataObject=None):
