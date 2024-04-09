@@ -8,7 +8,7 @@ app = Flask(__name__)
 def profile_maker(gmail):
     try:
         # Run your Python script using subprocess
-        result = subprocess.run(['python3', 'prof_maker.py',gmail], capture_output=True, text=True)
+        result = subprocess.run(['python3', 'prof_maker1.py',gmail], capture_output=True, text=True)
         output = result.stdout
         return jsonify({'success': True, 'output': output})
     except Exception as e:
@@ -18,7 +18,7 @@ def profile_maker(gmail):
 def update_all():
     try:
         # Run your Python script using subprocess
-        result = subprocess.run(['python3', 'prac_update.py'], capture_output=True, text=True)
+        result = subprocess.run(['python3', 'prac_update1.py'], capture_output=True, text=True)
         output = result.stdout
         return jsonify({'success': True, 'output': output})
     except Exception as e:
