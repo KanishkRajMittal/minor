@@ -129,7 +129,7 @@ def gfg(handle):
     d["Hard_Ques_Solved"] = difficulty_count['hard']
     return d
 
-gmail="kanishkrajmittal@gmail.com"
+# gmail="kanishkrajmittal@gmail.com"
 # l_handle="KanishkMittal"
 # c_handle="KanishkMittal"
 # gfg_handle="kanishkra56bh"
@@ -140,7 +140,7 @@ gmail="kanishkrajmittal@gmail.com"
 # gfg_handle="harshsharma20503"
 # dic={"codeforces":codeforces(c_handle),"leetcode":leetcode(l_handle),"gfg":gfg(gfg_handle)}
 
-# gmail = sys.argv[1]
+gmail = sys.argv[1]
 prof=db.collection("users").document(gmail).get().to_dict()
 dic={}
 if "leetcode" in prof:
